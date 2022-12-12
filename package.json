@@ -1,0 +1,14 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of Code by Arainty",
+  "scripts": {
+    "start": "node",
+    "watch": "nodemon"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1"
+  }
+}
