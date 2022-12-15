@@ -1,6 +1,6 @@
 import { readFile } from "fs";
 
-readFile("2022/inputs/input3.txt", (err, data) => {
+readFile(__dirname + "/inputs/input3.txt", (err, data) => {
     if (err) {
         console.error(err);
         return;
