@@ -1,6 +1,7 @@
 import { readFile } from "fs";
 
-readFile(__dirname + "/inputs/input2.txt", (err, data) => {
+const day = __filename.split("/").pop()?.match("\\d+")?.[0];
+readFile(__dirname + `/inputs/input${day}.txt`, (err, data) => {
     if (err) {
         console.error(err);
         return;
