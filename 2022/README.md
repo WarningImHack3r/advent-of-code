@@ -9,3 +9,12 @@ Unwritten rules for this year
 > Is a combination of 2 repeated folders with the same depth possible? Like both `/aaa/bbb/ccc/aaa` and `/aaa/ddd/ccc/aaa`?
 
 I have no clue
+
+## Day 10
+Tips for this day:
+
+### Part 1
+- Be careful to manipulate the `X` register in an `addx` as the **very last step** of `addx`.
+
+### Part 2
+- The sprite can (and will!) move back and forth between lines! The best way to proceed is to work on a **single giant line** and _then_ to split it in multiple 40-long lines (39 actually? idk)

@@ -11,25 +11,23 @@ readFile(__dirname + `/inputs/input${day}.txt`, (err, data) => {
     let Xregister = 1;
     let cycles = 0;
     let sum = 0;
-    let spritePosition = 0; // MIDDLE position, length is 3
     let drawnRow: string[] = []; // lines of # or .
     input.forEach(line => {
         if (line.startsWith("addx")) { // addx
             for (let i = 0; i < 2; i++) {
                 cycles++;
                 sum += observeCycles(cycles, Xregister);
-                draw(drawnRow, spritePosition, cycles);
+                draw(drawnRow, Xregister, cycles);
             }
             Xregister += parseInt(line.split(" ")[1]);
-            spritePosition = Xregister + 1;
         } else { // noop
             cycles++;
             sum += observeCycles(cycles, Xregister);
-            draw(drawnRow, spritePosition, cycles);
+            draw(drawnRow, Xregister, cycles);
         }
     });
     console.log(sum); // part 1
-    console.log(drawnRow.join("").match(/.{1,40}/g)?.join("\n")); // part 2 (screen is slightly weird idk why but it's readable)
+    console.log(drawnRow.join("").match(/.{1,40}/g)?.map(line => line.slice(0, -1)).join("\n")); // part 2
 });
 
 // dirty KVO, but it works
@@ -42,5 +40,5 @@ function observeCycles(cycles: number, registerValue: number): number {
 }
 
 function draw(row: string[], spritePosition: number, cycles: number) {
-    row[cycles] = Array.from({ length: 3 }, (_x, i) => i + spritePosition - 1).includes(cycles % 40) ? "#" : ".";
+    row[cycles] = Array.from({ length: 3 }, (_x, i) => i + spritePosition).includes(cycles % 40) ? "▓" : "░";
 }
