@@ -46,7 +46,7 @@ if __name__ == "__main__":
                     print(f"Invalid year, please enter a year between 2015 and {time.year - 1}")
                 sys.exit(1)
     # Loop over days and download inputs
-    for i in range(1, min(25, time.day + 1 if time.month == 12 else 25)):
+    for i in range(1, min(26, time.day + 1) if time.month == 12 else 26):
         dest_path = f"{base_year}/inputs/input{i}.txt"
         if not os.path.exists(dest_path):
             download_input(str(base_year), str(i), SESSION, dest_path)

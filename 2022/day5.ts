@@ -1,4 +1,5 @@
 import { readFile } from "fs";
+import { cloneDeep } from "lodash";
 
 const day = __filename.split("/").pop()?.match("\\d+")?.[0];
 readFile(__dirname + `/inputs/input${day}.txt`, (err, data) => {
@@ -41,7 +42,7 @@ readFile(__dirname + `/inputs/input${day}.txt`, (err, data) => {
     const parsedInstructions = instructions.map(line => line.match(/\d+/g)?.map(Number) ?? []).map(instruction => {
         return [instruction[0], instruction[1] - 1, instruction[2] - 1];
     });
-    const arrays2 = arrays.map(arr => arr.slice());
+    const arrays2 = cloneDeep(arrays);
     parsedInstructions.forEach(instruction => {
         const [count, original, target] = instruction;
         executeMove(count, arrays[original], arrays[target]);

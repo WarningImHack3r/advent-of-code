@@ -7,7 +7,9 @@
     "watch": "nodemon"
   },
   "devDependencies": {
-    "@types/node": "^18.11.16",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.18",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1"
   }
