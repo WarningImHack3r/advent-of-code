@@ -18,3 +18,9 @@ Tips for this day:
 
 ### Part 2
 - The sprite can (and will!) move back and forth between lines! The best way to proceed is to work on a **single giant line** and _then_ to split it in multiple 40-long lines (39 actually? idk)
+
+## Day 11
+
+### Part 2
+
+Be good at basic math (modulo and lcm/gcd) or check [that](https://www.reddit.com/r/adventofcode/comments/104uld8/2022_day_11_part_2_typescript_reducing_values/)
