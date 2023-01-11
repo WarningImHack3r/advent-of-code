@@ -39,16 +39,14 @@ function didIWin(me: number, him: number) {
  * 2 = égalité
  * 3 = gagner
  */
-function myChoiceFrom(hisChoice: number, gameResult: number) {
+function myChoiceFrom(hisChoice: number, gameResult: number): number {
     if (gameResult === 1) {
         if (hisChoice === 1) return 3;
         if (hisChoice === 2) return 1;
         return 2;
     }
     if (gameResult === 2) {
-        if (hisChoice === 1) return 1;
-        if (hisChoice === 2) return 2;
-        return 3;
+        return hisChoice;
     }
     return hisChoice === 1 ? 2 : hisChoice === 2 ? 3 : 1;
 }
