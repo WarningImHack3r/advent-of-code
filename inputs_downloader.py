@@ -45,6 +45,9 @@ if __name__ == "__main__":
                 else:
                     print(f"Invalid year, please enter a year between 2015 and {time.year - 1}")
                 sys.exit(1)
+    # Create directories for `year/inputs` if they don't exist
+    if not os.path.exists(f"{base_year}/inputs"):
+        os.mkdir(f"{base_year}/inputs")
     # Loop over days and download inputs
     for i in range(1, min(26, time.day + 1) if time.month == 12 else 26):
         dest_path = f"{base_year}/inputs/input{i}.txt"

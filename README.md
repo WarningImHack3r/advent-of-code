@@ -10,6 +10,8 @@ Code of my attempts on [adventofcode.com](https://adventofcode.com)
   - It only downloads *available* inputs (won't try to download a still locked puzzle input) if the current month is December, else it's gonna ask you the year you want
   - Also, it won't redownload an already existing input file
   - Inputs will be placed under `[year]/inputs/input[day].txt`
-- Don't forget to run `npm i` after clone to be able to run `.ts` files
-- Command to run any `day[day].ts` code: `npm run start -- /path/to/day[day].ts`
-  - Use the alternative `npm run watch [...]` command to rerun the file automatically after each change
+
+### Additional tips for TypeScript
+- Don't forget to run `pnpm i` after clone to be able to run `.ts` files
+- Command to run any `day[day].ts` code: `pnpm start -- /path/to/day[day].ts`
+  - Use the alternative `pnpm run watch [...]` command to rerun the file automatically after each change
