@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -40,10 +41,8 @@ func removeLetters(s string) string {
 }
 
 func (t *T) Day1() {
-	file := openFile("inputs/input1.txt")
-
 	var sum int
-	for _, line := range file {
+	for _, line := range openFile("inputs/input1.txt") {
 		// part 2: replace lettered numbers with their actual values
 		line = replacedLetters(line)
 
@@ -61,8 +60,10 @@ func (t *T) Day1() {
 		}
 
 		// convert the string to an int and add it to the sum
-		var num int
-		fmt.Sscanf(line, "%d", &num)
+		num, err := strconv.Atoi(line)
+		if err != nil {
+			panic(err)
+		}
 		sum += num
 	}
 
