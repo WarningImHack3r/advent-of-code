@@ -57,23 +57,11 @@ func linePower(sets []string) int {
 			}
 
 			if colorCount[1] == "red" {
-				if minRed == 1 {
-					minRed = strNb
-				} else {
-					minRed = max(minRed, strNb)
-				}
+				minRed = max(minRed, strNb)
 			} else if colorCount[1] == "green" {
-				if minGreen == 1 {
-					minGreen = strNb
-				} else {
-					minGreen = max(minGreen, strNb)
-				}
+				minGreen = max(minGreen, strNb)
 			} else if colorCount[1] == "blue" {
-				if minBlue == 1 {
-					minBlue = strNb
-				} else {
-					minBlue = max(minBlue, strNb)
-				}
+				minBlue = max(minBlue, strNb)
 			}
 		}
 	}
