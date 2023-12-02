@@ -39,7 +39,7 @@ func removeLetters(s string) string {
 	return newS
 }
 
-func main() {
+func (t *T) Day1() {
 	file := openFile("inputs/input1.txt")
 
 	var sum int
