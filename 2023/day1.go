@@ -6,9 +6,9 @@ import (
 )
 
 func replacedLetters(s string) string {
-	s = strings.ReplaceAll(s, "eightwo", "8")
-	s = strings.ReplaceAll(s, "twone", "2")
-	s = strings.ReplaceAll(s, "oneight", "1")
+	s = strings.ReplaceAll(s, "eightwo", "82")
+	s = strings.ReplaceAll(s, "twone", "21")
+	s = strings.ReplaceAll(s, "oneight", "18")
 	// s = strings.ReplaceAll(s, "fiveight", "5")
 	// s = strings.ReplaceAll(s, "sevenine", "7")
 	// s = strings.ReplaceAll(s, "eighthree", "8")
