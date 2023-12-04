@@ -40,9 +40,9 @@ func removeLetters(s string) string {
 	return newS
 }
 
-func (t *T) Day1() {
+func (t *T) Day1(input []string) {
 	var sum int
-	for _, line := range openFile("inputs/input1.txt") {
+	for _, line := range input {
 		// part 2: replace lettered numbers with their actual values
 		line = replacedLetters(line)
 

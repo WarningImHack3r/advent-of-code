@@ -42,5 +42,8 @@ func main() {
 	// latestMethod = "Day1"
 
 	// run the latest `DayX` method
-	reflect.ValueOf(&t).MethodByName(latestMethod).Call(nil)
+	dayDigits := latestMethod[3:]
+	reflect.ValueOf(&t).MethodByName(latestMethod).Call([]reflect.Value{
+		reflect.ValueOf(openFile("inputs/input" + dayDigits + ".txt")),
+	})
 }

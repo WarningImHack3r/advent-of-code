@@ -69,10 +69,10 @@ func linePower(sets []string) int {
 	return minRed * minGreen * minBlue
 }
 
-func (t *T) Day2() {
+func (t *T) Day2(input []string) {
 	var possibleIdsSum int
 	var setsPowerSum int
-	for _, line := range openFile("inputs/input2.txt") {
+	for _, line := range input {
 		parts := strings.Split(line, ": ")
 		gameId, err := strconv.Atoi(strings.Split(parts[0], " ")[1])
 		if err != nil {
