@@ -15,7 +15,7 @@ type Item struct {
 	symbolAdjacents []Item // Only for symbols in part 2, contains adjacent numbers
 }
 
-func (t *T) Day3(input []string) {
+func (d *Day) Day3(input []string) {
 	var currentItem *Item
 	items := make([]Item, 0)
 	partNumbers := make([]Item, 0)

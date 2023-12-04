@@ -15,7 +15,7 @@ func replacedLetters(s string) string {
 	// s = strings.ReplaceAll(s, "eighthree", "8")
 	// s = strings.ReplaceAll(s, "nineight", "9")
 	// s = strings.ReplaceAll(s, "threeight", "3")
-	
+
 	s = strings.ReplaceAll(s, "one", "1")
 	s = strings.ReplaceAll(s, "two", "2")
 	s = strings.ReplaceAll(s, "three", "3")
@@ -40,7 +40,7 @@ func removeLetters(s string) string {
 	return newS
 }
 
-func (t *T) Day1(input []string) {
+func (d *Day) Day1(input []string) {
 	var sum int
 	for _, line := range input {
 		// part 2: replace lettered numbers with their actual values

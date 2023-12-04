@@ -69,7 +69,7 @@ func linePower(sets []string) int {
 	return minRed * minGreen * minBlue
 }
 
-func (t *T) Day2(input []string) {
+func (d *Day) Day2(input []string) {
 	var possibleIdsSum int
 	var setsPowerSum int
 	for _, line := range input {

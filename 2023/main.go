@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"reflect"
+	"regexp"
 )
 
 func openFile(filename string) []string {
@@ -23,16 +24,16 @@ func openFile(filename string) []string {
 	return lines
 }
 
-type T struct{}
+type Day struct{}
 
 func main() {
-	t := T{}
+	d := Day{}
 
 	// get the latest `DayX` method
-	tType := reflect.TypeOf(&t)
+	dType := reflect.TypeOf(&d)
 	var latestMethod string
-	for i := 0; i < tType.NumMethod(); i++ {
-		method := tType.Method(i).Name
+	for i := 0; i < dType.NumMethod(); i++ {
+		method := dType.Method(i).Name
 		if latestMethod == "" || method > latestMethod {
 			latestMethod = method
 		}
@@ -42,8 +43,8 @@ func main() {
 	// latestMethod = "Day1"
 
 	// run the latest `DayX` method
-	dayDigits := latestMethod[3:]
-	reflect.ValueOf(&t).MethodByName(latestMethod).Call([]reflect.Value{
+	dayDigits := regexp.MustCompile(`\d+`).FindString(latestMethod)
+	reflect.ValueOf(&d).MethodByName(latestMethod).Call([]reflect.Value{
 		reflect.ValueOf(openFile("inputs/input" + dayDigits + ".txt")),
 	})
 }
