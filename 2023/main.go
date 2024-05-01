@@ -13,7 +13,12 @@ func openFile(filename string) []string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err = file.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(file)
 
 	var lines []string
 	scanner := bufio.NewScanner(file)
@@ -44,7 +49,9 @@ func main() {
 
 	// run the latest `DayX` method
 	dayDigits := regexp.MustCompile(`\d+`).FindString(latestMethod)
-	reflect.ValueOf(&d).MethodByName(latestMethod).Call([]reflect.Value{
-		reflect.ValueOf(openFile("inputs/input" + dayDigits + ".txt")),
-	})
+	reflect.ValueOf(&d).MethodByName(latestMethod).Call(
+		[]reflect.Value{
+			reflect.ValueOf(openFile("inputs/input" + dayDigits + ".txt")),
+		},
+	)
 }
