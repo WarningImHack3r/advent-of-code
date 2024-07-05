@@ -15,8 +15,8 @@ devDependencies:
     specifier: ^4.17.21
     version: 4.17.21
   mathjs:
-    specifier: ^12.1.0
-    version: 12.1.0
+    specifier: ^13.0.2
+    version: 13.0.2
   nodemon:
     specifier: ^3.0.2
     version: 3.0.2
@@ -26,8 +26,8 @@ devDependencies:
 
 packages:
 
-  /@babel/runtime@7.23.5:
-    resolution: {integrity: sha512-NdUTHcPe4C99WxPub+K9l9tK5/lV4UXIoaHSYgzco9BCyjKAAwzdBI+wWtYqHt7LJdbo74ZjRPJgzVweq1sz0w==}
+  /@babel/runtime@7.24.7:
+    resolution: {integrity: sha512-UwgBRMjJP+xv857DCngvqXI3Iq6J4v0wXmwc6sapg+zyhbwmQX67LUEFrkK5tbyJ30jGuG3ZvWpBiB9LCy1kWw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
@@ -192,8 +192,8 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
-  /fraction.js@4.3.4:
-    resolution: {integrity: sha512-pwiTgt0Q7t+GHZA4yaLjObx4vXmmdcS0iSJ19o8d/goUGgItX9UZWKWNnLHehxviD8wU2IWRsnR8cD5+yOJP2Q==}
+  /fraction.js@4.3.7:
+    resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: true
 
   /fsevents@2.3.3:
@@ -263,20 +263,20 @@ packages:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
     dev: true
 
-  /mathjs@12.1.0:
-    resolution: {integrity: sha512-x5wUkWo3CfXMl4mf/jHsbVNuMcUwN2m4qbj+tR/jYr9fdiIrlsexQbKYav8Uwfe+E5he30CyVaABNLmAlTFO3w==}
+  /mathjs@13.0.2:
+    resolution: {integrity: sha512-8vK/+InU4FTphRTWsrnvRsgSjbyNupRQYDDIXLuEGDZtJsGdbA9dVV4HZ0amBQb+RXplRjVJNGZZfB0WoHWFWA==}
     engines: {node: '>= 18'}
     hasBin: true
     dependencies:
-      '@babel/runtime': 7.23.5
+      '@babel/runtime': 7.24.7
       complex.js: 2.1.1
       decimal.js: 10.4.3
       escape-latex: 1.2.0
-      fraction.js: 4.3.4
+      fraction.js: 4.3.7
       javascript-natural-sort: 0.7.1
       seedrandom: 3.0.5
       tiny-emitter: 2.1.0
-      typed-function: 4.1.1
+      typed-function: 4.2.1
     dev: true
 
   /minimatch@3.1.2:
@@ -413,9 +413,9 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /typed-function@4.1.1:
-    resolution: {integrity: sha512-Pq1DVubcvibmm8bYcMowjVnnMwPVMeh0DIdA8ad8NZY2sJgapANJmiigSUwlt+EgXxpfIv8MWrQXTIzkfYZLYQ==}
-    engines: {node: '>= 14'}
+  /typed-function@4.2.1:
+    resolution: {integrity: sha512-EGjWssW7Tsk4DGfE+5yluuljS1OGYWiI1J6e8puZz9nTMM51Oug8CD5Zo4gWMsOhq5BI+1bF+rWTm4Vbj3ivRA==}
+    engines: {node: '>= 18'}
     dev: true
 
   /typescript@5.3.2:
