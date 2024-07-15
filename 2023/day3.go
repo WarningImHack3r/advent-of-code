@@ -12,7 +12,7 @@ type Item struct {
 	xStart          int
 	xEnd            int
 	y               int
-	symbolAdjacents []Item // Only for symbols in part 2, contains adjacent numbers
+	adjacentSymbols []Item // Only for symbols in part 2, contains adjacent numbers
 }
 
 func (d *Day) Day3(input []string) {
@@ -66,32 +66,19 @@ func (d *Day) Day3(input []string) {
 						if number.xStart == symbol.xEnd+1 || number.xEnd == symbol.xStart-1 {
 							// Adjacent same line
 							partNumbers = append(partNumbers, number)
-							items[i].symbolAdjacents = append(items[i].symbolAdjacents, number)
+							items[i].adjacentSymbols = append(items[i].adjacentSymbols, number)
 						}
 					} else if number.y == symbol.y+1 || number.y == symbol.y-1 {
 						// Adjacent upper or lower line
 						if number.xStart == symbol.xStart || number.xStart == symbol.xStart+1 || number.xEnd == symbol.xEnd || number.xEnd == symbol.xEnd-1 || (number.xStart < symbol.xStart && number.xEnd > symbol.xEnd) {
 							partNumbers = append(partNumbers, number)
-							items[i].symbolAdjacents = append(items[i].symbolAdjacents, number)
+							items[i].adjacentSymbols = append(items[i].adjacentSymbols, number)
 						}
 					}
 				}
 			}
 		}
 	}
-
-	// DEBUG
-	/*for i := range input {
-		fmt.Printf("%v: ", input[i])
-		for _, number := range partNumbers {
-			if number.y == i {
-				fmt.Printf("%s ", number.content)
-			}
-		}
-		fmt.Println()
-	}
-	fmt.Printf("%d adjacent numbers out of %d items\n", len(partNumbers), len(items))*/
-	// END DEBUG
 
 	// Part 1: Sum all part numbers
 	sum := 0
@@ -106,9 +93,9 @@ func (d *Day) Day3(input []string) {
 	// Part 2: Sum all ratios of 2 numbers around a '*' symbol
 	ratiosSum := 0
 	for _, symbol := range items {
-		if symbol.isSymbol && symbol.content == "*" && len(symbol.symbolAdjacents) == 2 {
+		if symbol.isSymbol && symbol.content == "*" && len(symbol.adjacentSymbols) == 2 {
 			gearRatio := 1
-			for _, number := range symbol.symbolAdjacents {
+			for _, number := range symbol.adjacentSymbols {
 				num, err := strconv.Atoi(number.content)
 				if err != nil {
 					panic(err)

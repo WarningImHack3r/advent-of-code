@@ -32,8 +32,8 @@ func replacedLetters(s string) string {
 func removeLetters(s string) string {
 	var newS string
 	for _, char := range s {
-		numchar := int(char)
-		if numchar >= 48 && numchar <= 57 {
+		charValue := int(char)
+		if charValue >= 48 && charValue <= 57 {
 			newS += string(char)
 		}
 	}

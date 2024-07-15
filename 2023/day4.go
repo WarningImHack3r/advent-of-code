@@ -41,7 +41,8 @@ func (d *Day) Day4(input []string) {
 
 		// Populate lists
 		for _, n := range strings.Fields(grids[0]) {
-			num, err := strconv.Atoi(n)
+			var num int
+			num, err = strconv.Atoi(n)
 			if err != nil {
 				fmt.Printf("Error converting winning number (%v) to int: %v\n", n, err)
 			}
@@ -49,21 +50,24 @@ func (d *Day) Day4(input []string) {
 		}
 
 		for _, n := range strings.Fields(grids[1]) {
-			num, err := strconv.Atoi(n)
+			var num int
+			num, err = strconv.Atoi(n)
 			if err != nil {
 				fmt.Printf("Error converting your number (%v) to int: %v\n", n, err)
 			}
 			yourNumbers = append(yourNumbers, num)
 		}
 
-		cards = append(cards, Card{
-			id:             cardIdInt - 1,
-			winningNumbers: winningNumbers,
-			yourNumbers:    yourNumbers,
-		})
+		cards = append(
+			cards, Card{
+				id:             cardIdInt - 1,
+				winningNumbers: winningNumbers,
+				yourNumbers:    yourNumbers,
+			},
+		)
 	}
 
-	// Part 1: Increase score on each win
+	// Part 1: Increase the score on each win
 	for _, card := range cards {
 		score := 0
 		for i := 0; i < checkForWin(card); i++ {

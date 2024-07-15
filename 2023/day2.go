@@ -7,9 +7,9 @@ import (
 )
 
 const (
-	MAX_RED   = 12
-	MAX_GREEN = 13
-	MAX_BLUE  = 14
+	MaxRed   = 12
+	MaxGreen = 13
+	MaxBlue  = 14
 )
 
 func isGamePossible(sets []string) bool {
@@ -23,17 +23,17 @@ func isGamePossible(sets []string) bool {
 			}
 
 			if colorCount[1] == "red" {
-				if strNb > MAX_RED {
+				if strNb > MaxRed {
 					lineIsOk = false
 					break
 				}
 			} else if colorCount[1] == "green" {
-				if strNb > MAX_GREEN {
+				if strNb > MaxGreen {
 					lineIsOk = false
 					break
 				}
 			} else if colorCount[1] == "blue" {
-				if strNb > MAX_BLUE {
+				if strNb > MaxBlue {
 					lineIsOk = false
 					break
 				}

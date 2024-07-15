@@ -7,10 +7,11 @@ import (
 
 type Pair struct {
 	hand string
-	bid int
+	bid  int
 }
 
 type Rank uint8
+
 const (
 	HighCard Rank = iota
 	OnePair
@@ -34,9 +35,11 @@ func rankForHand(hand string) Rank {
 		}
 		values = append(values, count)
 	}
-	sort.Slice(values, func(i, j int) bool {
-		return values[i] > values[j]
-	})
+	sort.Slice(
+		values, func(i, j int) bool {
+			return values[i] > values[j]
+		},
+	)
 	fmt.Println(hand, values)
 
 	// Part 2 - add the occurrences of J to the first value
@@ -109,17 +112,23 @@ func (d *Day) Day7(input []string) {
 	for i, line := range input {
 		var hand string
 		var bid int
-		fmt.Sscanf(line, "%s %d", &hand, &bid)
+		_, err := fmt.Sscanf(line, "%s %d", &hand, &bid)
+		if err != nil {
+			fmt.Println("Error parsing line", i, ":", err)
+			return
+		}
 		pairs[i] = Pair{hand, bid}
 	}
 
-	sort.Slice(pairs, func(i, j int) bool {
-		return strongestHand(pairs[i].hand, pairs[j].hand) == pairs[j].hand
-	})
+	sort.Slice(
+		pairs, func(i, j int) bool {
+			return strongestHand(pairs[i].hand, pairs[j].hand) == pairs[j].hand
+		},
+	)
 
 	totalWinnings := 0
 	for i, pair := range pairs {
-		totalWinnings += pair.bid * (i+1)
+		totalWinnings += pair.bid * (i + 1)
 		fmt.Printf("%d: %s %d\n", i+1, pair.hand, pair.bid)
 	}
 

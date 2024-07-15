@@ -36,12 +36,12 @@ func (d *Day) Day5(input []string) {
 	for i, line := range input {
 		// Parsing seeds
 		if strings.HasPrefix(line, "seeds: ") {
-			for i, seedStr := range strings.Split(line, " ")[1:] {
+			for j, seedStr := range strings.Split(line, " ")[1:] {
 				seed, _ := strconv.Atoi(seedStr)
 				// Part 2: Every odd seed is a range from the previous seed included
-				if i%2 == 1 {
+				if j%2 == 1 {
 					prevSeed := seeds[len(seeds)-1]
-					for j := prevSeed + 1; j < prevSeed + seed; j++ {
+					for j := prevSeed + 1; j < prevSeed+seed; j++ {
 						seeds = append(seeds, j)
 					}
 					continue
@@ -66,11 +66,13 @@ func (d *Day) Day5(input []string) {
 				sourceRangeStart, _ := strconv.Atoi(splits[1])
 				rangeLength, _ := strconv.Atoi(splits[2])
 
-				newMap.lines = append(newMap.lines, MapLine{
-					destinationRangeStart: destRangeStart,
-					sourceRangeStart:      sourceRangeStart,
-					rangeLength:           rangeLength,
-				})
+				newMap.lines = append(
+					newMap.lines, MapLine{
+						destinationRangeStart: destRangeStart,
+						sourceRangeStart:      sourceRangeStart,
+						rangeLength:           rangeLength,
+					},
+				)
 
 				nextIndex++
 			}
