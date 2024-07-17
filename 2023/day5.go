@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -28,25 +27,16 @@ func processMap(m Map, in int) (out int) {
 	return in
 }
 
-func (d *Day) Day5(input []string) {
-	seeds := make([]int, 0)
-	maps := make([]Map, 0)
-
-	// Parse input
+func parseSeeds(input []string, maps *[]Map, seeds *[]int, spe func(int, int) bool) {
 	for i, line := range input {
 		// Parsing seeds
 		if strings.HasPrefix(line, "seeds: ") {
 			for j, seedStr := range strings.Split(line, " ")[1:] {
 				seed, _ := strconv.Atoi(seedStr)
-				// Part 2: Every odd seed is a range from the previous seed included
-				if j%2 == 1 {
-					prevSeed := seeds[len(seeds)-1]
-					for j := prevSeed + 1; j < prevSeed+seed; j++ {
-						seeds = append(seeds, j)
-					}
+				if spe(j, seed) {
 					continue
 				}
-				seeds = append(seeds, seed)
+				*seeds = append(*seeds, seed)
 			}
 			continue
 		}
@@ -77,12 +67,12 @@ func (d *Day) Day5(input []string) {
 				nextIndex++
 			}
 
-			maps = append(maps, newMap)
+			*maps = append(*maps, newMap)
 		}
 	}
+}
 
-	// Solve
-	lowestLocation := 0
+func findLowestLocation(maps []Map, seeds []int) (lowestLocation int) {
 	for _, seed := range seeds {
 		nextMapInput := seed
 		for _, m := range maps {
@@ -92,6 +82,32 @@ func (d *Day) Day5(input []string) {
 			lowestLocation = nextMapInput
 		}
 	}
+	return
+}
 
-	fmt.Println("Lowest location:", lowestLocation)
+func (d *Day) Day5(input []string) {
+	seeds := make([]int, 0)
+	maps := make([]Map, 0)
+	seeds2 := make([]int, 0)
+	maps2 := make([]Map, 0)
+
+	// Parse input
+	parseSeeds(input, &maps, &seeds, func(j int, seed int) bool { return false })
+	parseSeeds(
+		input, &maps2, &seeds2, func(index int, seed int) bool {
+			// Part 2: Every odd seed is a range from the previous seed included
+			if index%2 == 1 {
+				prevSeed := seeds2[len(seeds2)-1]
+				for k := prevSeed + 1; k < prevSeed+seed; k++ {
+					seeds2 = append(seeds2, k)
+				}
+				return true
+			}
+			return false
+		},
+	)
+
+	// Solve
+	d.SetPart1Answer(findLowestLocation(maps, seeds))
+	d.SetPart2Answer(findLowestLocation(maps2, seeds2))
 }

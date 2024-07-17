@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -86,6 +85,6 @@ func (d *Day) Day2(input []string) {
 		setsPowerSum += linePower(sets)
 	}
 
-	fmt.Printf("Part 1: %d\n", possibleIdsSum)
-	fmt.Printf("Part 2: %d\n", setsPowerSum)
+	d.SetPart1Answer(possibleIdsSum)
+	d.SetPart2Answer(setsPowerSum)
 }

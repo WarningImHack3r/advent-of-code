@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -67,6 +66,6 @@ func (d *Day) Day9(input []string) {
 	}
 
 	// Print the result
-	fmt.Println("Part 1:", sum)
-	fmt.Println("Part 2:", backwardSum)
+	d.SetPart1Answer(sum)
+	d.SetPart2Answer(backwardSum)
 }

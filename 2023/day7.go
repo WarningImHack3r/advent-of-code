@@ -132,5 +132,5 @@ func (d *Day) Day7(input []string) {
 		fmt.Printf("%d: %s %d\n", i+1, pair.hand, pair.bid)
 	}
 
-	fmt.Println("Total winnings:", totalWinnings)
+	d.SetPart2Answer(totalWinnings)
 }

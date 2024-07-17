@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 	"reflect"
@@ -30,9 +31,25 @@ func readFile(filename string) []string {
 	return lines
 }
 
-type Day struct{}
+type Day struct {
+	part1, part2 *int
+}
+
+func (d *Day) SetPart1Answer(answer int) {
+	d.part1 = &answer
+}
+
+func (d *Day) SetPart2Answer(answer int) {
+	d.part2 = &answer
+}
 
 var numberRegex = regexp.MustCompile(`\d+`)
+
+const (
+	reset = "\033[0m"
+	blue  = "\033[34m"
+	cyan  = "\033[36m"
+)
 
 func main() {
 	var d Day
@@ -64,4 +81,15 @@ func main() {
 			reflect.ValueOf(readFile("inputs/input" + strconv.Itoa(latestDay) + ".txt")),
 		},
 	)
+
+	// print the results
+	if d.part1 != nil || d.part2 != nil {
+		fmt.Println()
+	}
+	if d.part1 != nil {
+		fmt.Printf("%s[Day %d]%s Part 1:%s %v\n", blue, latestDay, cyan, reset, *d.part1)
+	}
+	if d.part2 != nil {
+		fmt.Printf("%s[Day %d]%s Part 2:%s %v\n", blue, latestDay, cyan, reset, *d.part2)
+	}
 }

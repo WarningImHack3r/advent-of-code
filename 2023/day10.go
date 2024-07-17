@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 )
 
@@ -117,7 +116,7 @@ func (d *Day) Day10(input []string) {
 	}
 
 	mainLoop := deepestNodesList(startingPipe)
-	fmt.Println("Part 1:", len(mainLoop)/2)
+	d.SetPart1Answer(len(mainLoop) / 2)
 
 	// Solution taken and adapted from https://github.com/ianmihura/advent23/blob/master/day_10/day_10.go#L88
 	// Shoelace formula (make sure the loop is counter-clockwise)
@@ -134,5 +133,5 @@ func (d *Day) Day10(input []string) {
 	// Pick's theorem
 	inner := area - (len(mainLoop) / 2) + 1
 
-	fmt.Println("Part 2:", inner)
+	d.SetPart2Answer(inner)
 }

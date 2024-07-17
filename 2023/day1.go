@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -40,11 +39,10 @@ func removeLetters(s string) string {
 	return newS
 }
 
-func (d *Day) Day1(input []string) {
+func parseStrings(input []string, beforeLoop func(string) string) int {
 	var sum int
 	for _, line := range input {
-		// part 2: replace lettered numbers with their actual values
-		line = replacedLetters(line)
+		line = beforeLoop(line)
 
 		// remove all letters from the string
 		line = removeLetters(line)
@@ -66,6 +64,16 @@ func (d *Day) Day1(input []string) {
 		}
 		sum += num
 	}
+	return sum
+}
 
-	fmt.Println(sum)
+func (d *Day) Day1(input []string) {
+	d.SetPart1Answer(
+		parseStrings(
+			input, func(line string) string {
+				return line
+			},
+		),
+	)
+	d.SetPart2Answer(parseStrings(input, replacedLetters))
 }

@@ -57,7 +57,7 @@ func (d *Day) Day6(input []string) {
 		errorMargin *= winPossibilities
 	}
 
-	fmt.Printf("[Step 1] Error margin: %v\n", errorMargin)
+	d.SetPart1Answer(errorMargin)
 
 	// Solve part 2
 	errorMargin = 0
@@ -68,5 +68,5 @@ func (d *Day) Day6(input []string) {
 		}
 	}
 
-	fmt.Printf("[Step 2] Error margin: %v\n", errorMargin)
+	d.SetPart2Answer(errorMargin)
 }

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "strings"
 
 type Direction uint
 
@@ -74,7 +71,7 @@ func (d *Day) Day8(input []string) {
 	}
 
 	// step 1
-	fmt.Println("Step 1:", counter)
+	d.SetPart1Answer(counter)
 
 	positions := make([]string, 0, len(mappings))
 	for k := range mappings {
@@ -112,7 +109,7 @@ infinite:
 	}
 
 	// step 2
-	fmt.Println("Step 2:", LCM(diffs...))
+	d.SetPart2Answer(LCM(diffs...))
 }
 
 func GCD(a, b int) int {

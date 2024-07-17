@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"unicode"
 )
@@ -89,6 +88,7 @@ func (d *Day) Day3(input []string) {
 		}
 		sum += num
 	}
+	d.SetPart1Answer(sum)
 
 	// Part 2: Sum all ratios of 2 numbers around a '*' symbol
 	ratiosSum := 0
@@ -105,7 +105,5 @@ func (d *Day) Day3(input []string) {
 			ratiosSum += gearRatio
 		}
 	}
-
-	fmt.Printf("Step 1: %d\n", sum)
-	fmt.Printf("Step 2: %d\n", ratiosSum)
+	d.SetPart2Answer(ratiosSum)
 }

@@ -79,6 +79,7 @@ func (d *Day) Day4(input []string) {
 		}
 		winsSum += score
 	}
+	d.SetPart1Answer(winsSum)
 
 	// Part 2: Add the n next cards again to the list if n wins
 	cardsCounts := make([]int, len(cards))
@@ -101,7 +102,5 @@ func (d *Day) Day4(input []string) {
 	for _, count := range cardsCounts {
 		countsSum += count
 	}
-
-	fmt.Printf("Part 1: %d\n", winsSum)
-	fmt.Printf("Part 2: %d\n", countsSum)
+	d.SetPart2Answer(countsSum)
 }
