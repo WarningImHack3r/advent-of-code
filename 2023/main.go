@@ -6,9 +6,10 @@ import (
 	"os"
 	"reflect"
 	"regexp"
+	"strconv"
 )
 
-func openFile(filename string) []string {
+func readFile(filename string) []string {
 	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -31,27 +32,36 @@ func openFile(filename string) []string {
 
 type Day struct{}
 
+var numberRegex = regexp.MustCompile(`\d+`)
+
 func main() {
-	d := Day{}
+	var d Day
 
 	// get the latest `DayX` method
 	dType := reflect.TypeOf(&d)
 	var latestMethod string
+	var latestDay int
 	for i := 0; i < dType.NumMethod(); i++ {
 		method := dType.Method(i).Name
-		if latestMethod == "" || method > latestMethod {
+		dayDigits := numberRegex.FindString(method)
+		day, err := strconv.Atoi(dayDigits)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if latestMethod == "" || day > latestDay {
 			latestMethod = method
+			latestDay = day
 		}
 	}
 
-	// manually set the latest method to run
+	// manually set the method to run
 	// latestMethod = "Day1"
+	// latestDay = 1
 
 	// run the latest `DayX` method
-	dayDigits := regexp.MustCompile(`\d+`).FindString(latestMethod)
 	reflect.ValueOf(&d).MethodByName(latestMethod).Call(
 		[]reflect.Value{
-			reflect.ValueOf(openFile("inputs/input" + dayDigits + ".txt")),
+			reflect.ValueOf(readFile("inputs/input" + strconv.Itoa(latestDay) + ".txt")),
 		},
 	)
 }
