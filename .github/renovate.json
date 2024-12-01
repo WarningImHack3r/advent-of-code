@@ -5,7 +5,7 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "matchManagers": ["github-actions", "npm", "gomod", "pip_requirements"],
+      "matchManagers": ["github-actions", "npm", "gomod", "pip_requirements", "gradle"],
       "groupName": "{{manager}}",
       "addLabels": ["{{manager}}"]
     },
