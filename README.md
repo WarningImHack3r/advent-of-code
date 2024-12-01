@@ -2,9 +2,9 @@
 
 Code of my attempts on [adventofcode.com](https://adventofcode.com)
 
-## Random tips
+## Code structure and inputs
 
-- Each year is in its respective folder (seems obvious)
+- Each year is in its respective folder
 - Run the `inputs_downloader.py` script to automatically download your current's year puzzle inputs
   - **The script requires your `session` token (available from the website's cookies storage), stored as `SESSION_TOKEN` in a `.env` file at the project's root**
   - Run `python3 -m pip install -r requirements.txt` before first execution
@@ -12,7 +12,7 @@ Code of my attempts on [adventofcode.com](https://adventofcode.com)
   - Also, it won't re-download an already existing input file
   - Inputs will be placed under `[year]/inputs/input[day].txt`
 
-### Additional tips for TypeScript
+## Tips for TypeScript years
 
 - Command to run any `day[day].ts` code: `pnpm start -- /path/to/day[day].ts`
   - Use the alternative `pnpm run watch [...]` command to rerun the file automatically after each change
