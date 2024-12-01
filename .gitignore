@@ -1,6 +1,10 @@
 node_modules/
 .DS_Store
 inputs/
+.gradle/
+.kotlin/
+build/
+*.iml
 .idea/*
 !.idea/icon.svg
 .env
