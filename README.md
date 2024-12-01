@@ -2,6 +2,12 @@
 
 Code of my attempts on [adventofcode.com](https://adventofcode.com)
 
+## Languages
+
+- [2022](2022): TypeScript
+- [2023](2023): Go
+- [2024](2024): Kotlin
+
 ## Code structure and inputs
 
 - Each year is in its respective folder
