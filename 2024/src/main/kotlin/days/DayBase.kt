@@ -1,7 +1,9 @@
 package days
 
+import java.nio.file.NoSuchFileException
 import kotlin.io.path.Path
-import kotlin.io.path.readText
+import kotlin.io.path.readLines
+import kotlin.system.exitProcess
 
 sealed class DayBase(val day: Int) {
     companion object {
@@ -13,10 +15,15 @@ sealed class DayBase(val day: Int) {
     var _part1Answer: Int? = null
     var _part2Answer: Int? = null
 
-    fun readInput() = Path("$CURRENT_YEAR/inputs/input$day.txt")
-        .readText()
-        .trim()
-        .lines()
+    fun readInput() = try {
+        Path("$CURRENT_YEAR/inputs/input$day.txt").readLines()
+    } catch (_: NoSuchFileException) {
+        println("No input file found for day $day, don't forget to generate it from the script!")
+        exitProcess(1)
+    } catch (e: Exception) {
+        println("Something went wrong while reading day $day's input: ${e.message}")
+        exitProcess(1)
+    }
 
     abstract fun solve(input: List<String>)
 
