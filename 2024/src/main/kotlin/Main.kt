@@ -14,7 +14,7 @@ enum class Colors {
 
 fun printAnswer(day: Int, part: Int, answer: Int) {
     val formattedOutput = "%,d".format(answer)
-    val output = if (formattedOutput != "$answer") " ($formattedOutput)" else ""
+    val output = if (formattedOutput != "$answer") "\t($formattedOutput)" else ""
     println("${Colors.BLUE}[Day $day]${Colors.CYAN} Part $part:${Colors.RESET} $answer$output")
 }
 

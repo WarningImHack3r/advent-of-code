@@ -11,12 +11,7 @@ object Day3 : DayBase(3) {
             if (r.endInclusive < range.start) {
                 continue
             }
-            if (r.endInclusive >= range.endInclusive && r.start <= range.start) {
-                return true
-            }
-            if (r.start > range.endInclusive) {
-                return false
-            }
+            return r.endInclusive >= range.endInclusive && r.start <= range.start
         }
         return false
     }
