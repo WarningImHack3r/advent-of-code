@@ -7,11 +7,11 @@ object Day4 : DayBase(4) {
         'M' to 'A',
         'A' to 'S'
     )
-    val oppositeDiagsMap = mapOf(
-        DirectionTarget.TOP_LEFT to DirectionTarget.BOTTOM_RIGHT,
-        DirectionTarget.BOTTOM_LEFT to DirectionTarget.TOP_RIGHT,
-        DirectionTarget.TOP_RIGHT to DirectionTarget.BOTTOM_LEFT,
-        DirectionTarget.BOTTOM_RIGHT to DirectionTarget.TOP_LEFT
+    val corners = listOf(
+        DirectionTarget.TOP_LEFT,
+        DirectionTarget.TOP_RIGHT,
+        DirectionTarget.BOTTOM_LEFT,
+        DirectionTarget.BOTTOM_RIGHT,
     )
 
     enum class DirectionTarget(val x: Int, val y: Int) {
@@ -25,11 +25,14 @@ object Day4 : DayBase(4) {
         TOP(0, -1)
     }
 
-    fun <T : Comparable<T>> isValueAt(grid: Collection<Collection<T>>, x: Int, y: Int, value: T): Boolean {
-        if (y < 0 || y > grid.size - 1) return false
-        if (x < 0 || x > grid.elementAt(y).size - 1) return false
-        return grid.elementAt(y).elementAt(x) == value
+    fun <T : Comparable<T>> getValueAt(grid: Collection<Collection<T>>, x: Int, y: Int): T? {
+        if (y < 0 || y > grid.size - 1) return null
+        if (x < 0 || x > grid.elementAt(y).size - 1) return null
+        return grid.elementAt(y).elementAt(x)
     }
+
+    fun <T : Comparable<T>> isValueAt(grid: Collection<Collection<T>>, x: Int, y: Int, value: T) =
+        getValueAt(grid, x, y) == value
 
     fun startLookup(
         grid: Collection<Collection<Char>>,
@@ -52,17 +55,14 @@ object Day4 : DayBase(4) {
     }
 
     fun diagonalLookup(grid: Collection<Collection<Char>>, x: Int, y: Int): Boolean {
-        var okDiags = 0
-        val maxDiags = oppositeDiagsMap.size / 2
-        for ((first, second) in oppositeDiagsMap.entries) {
-            if (isValueAt(grid, x + first.x, y + first.y, 'M') &&
-                isValueAt(grid, x + second.x, y + second.y, 'S')
-            ) {
-                okDiags++
-                if (okDiags == maxDiags) return true
-            }
-        }
-        return false
+        val cornerValues = corners.associate { target ->
+            target to getValueAt(grid, x + target.x, y + target.y)
+        }.filterValues { it != null }
+        val valuesSet = cornerValues.values.toSet()
+        if (valuesSet.size != corners.size / 2) return false
+        return cornerValues.values.count { it == 'M' } == 2
+                && valuesSet.contains('S')
+                && cornerValues[DirectionTarget.TOP_LEFT] != cornerValues[DirectionTarget.BOTTOM_RIGHT]
     }
 
     override fun solve(input: List<String>) {
