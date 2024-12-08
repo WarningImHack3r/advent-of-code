@@ -2,7 +2,7 @@ package days
 
 @Suppress("unused")
 object Day5 : DayBase(5) {
-    val orderingMap = mutableMapOf<Int, List<Int>>()
+    val orderingMap = mutableMapOf<Int, MutableList<Int>>()
     val sequences = mutableListOf<List<Int>>()
 
     override fun solve(input: List<String>) {
@@ -18,9 +18,7 @@ object Day5 : DayBase(5) {
                 sequences.add(line.split(",").map(String::toInt))
             } else {
                 val (base, beforePage) = line.split("|").map(String::toInt)
-                orderingMap[base] = orderingMap[base]?.let {
-                    it + listOf(beforePage)
-                } ?: listOf(beforePage)
+                orderingMap.computeIfAbsent(base) { mutableListOf() }.add(beforePage)
             }
         }
 
