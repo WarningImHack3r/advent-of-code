@@ -41,9 +41,8 @@ fun main() {
         println("No implementation found. Implement the DayBase class to begin!")
         return
     }
-    val execTime = measureTime {
-        d.solve(d.readInput())
-    }
+    val input = d.readInput()
+    val execTime = measureTime { d.solve(input) }
 
     if (d._part1Answer != null || d._part2Answer != null) println()
     d._part1Answer?.let { printAnswer(d.day, 1, it) }
