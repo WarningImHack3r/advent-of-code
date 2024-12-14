@@ -12,8 +12,8 @@ sealed class DayBase(val day: Int) {
             .mapNotNull { it.objectInstance }
     }
 
-    var _part1Answer: Int? = null
-    var _part2Answer: Int? = null
+    var _part1Answer: Long? = null
+    var _part2Answer: Long? = null
 
     fun readInput() = try {
         Path("$CURRENT_YEAR/inputs/input$day.txt").readLines()
@@ -28,10 +28,18 @@ sealed class DayBase(val day: Int) {
     abstract fun solve(input: List<String>)
 
     fun setPart1Answer(answer: Int) {
+        _part1Answer = answer.toLong()
+    }
+
+    fun setPart1Answer(answer: Long) {
         _part1Answer = answer
     }
 
     fun setPart2Answer(result: Int) {
+        _part2Answer = result.toLong()
+    }
+
+    fun setPart2Answer(result: Long) {
         _part2Answer = result
     }
 }
