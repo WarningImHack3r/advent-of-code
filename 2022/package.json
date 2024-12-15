@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "lodash": "^4.17.21",
-    "mathjs": "^14.0.0",
-    "nodemon": "^3.1.7",
+    "mathjs": "^14.0.1",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2"
   }
 }
