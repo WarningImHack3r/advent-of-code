@@ -5,7 +5,7 @@ import kotlin.io.path.Path
 import kotlin.io.path.readLines
 import kotlin.system.exitProcess
 
-sealed class DayBase(val day: Int) {
+sealed class DayBase(val day: Int, val testMode: Boolean = false) {
     companion object {
         const val CURRENT_YEAR = 2024
         fun getAllDays() = DayBase::class.sealedSubclasses
