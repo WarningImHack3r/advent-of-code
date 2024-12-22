@@ -1,4 +1,6 @@
 import days.DayBase
+import java.io.OutputStream
+import java.io.PrintStream
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.measureTime
@@ -50,7 +52,10 @@ fun main() {
     // Compute example
     val example = Examples.get(d.day)
     if (!d.testMode) {
+        val out = System.out
+        System.setOut(PrintStream(OutputStream.nullOutputStream()))
         example?.input?.let { d.solve(it) }
+        System.setOut(out)
     }
     val d1example = d._part1Answer?.also { d._part1Answer = null }
     val d2example = d._part2Answer?.also { d._part2Answer = null }
