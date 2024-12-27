@@ -14,7 +14,7 @@ object Examples {
         7 to Answer(3_749, 11_387),
         8 to Answer(14, 34),
         9 to Answer(1_928, null),
-        10 to Answer(36, null),
+        10 to Answer(36, 81),
         11 to Answer(55_312, null),
         12 to Answer(1_930, null),
         13 to Answer(100, null),
