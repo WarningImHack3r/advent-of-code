@@ -13,7 +13,7 @@ object Examples {
         6 to Answer(41, 6),
         7 to Answer(3_749, 11_387),
         8 to Answer(14, 34),
-        9 to Answer(1_928, null),
+        9 to Answer(1_928, 2_858),
         10 to Answer(36, 81),
         11 to Answer(55_312, null),
         12 to Answer(1_930, null),
