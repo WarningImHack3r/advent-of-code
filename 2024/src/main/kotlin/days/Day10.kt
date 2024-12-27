@@ -60,7 +60,7 @@ object Day10 : DayBase(10) {
             }
         }
 
-        setPart1Answer(trailheadsScores.values.reduce { acc, pos -> acc + pos })
+        setPart1Answer(trailheadsScores.values.sum())
 
         // Part 2
         trailheadsScores.clear()
@@ -74,6 +74,6 @@ object Day10 : DayBase(10) {
             }
         }
 
-        setPart2Answer(trailheadsScores.values.reduce { acc, pos -> acc + pos })
+        setPart2Answer(trailheadsScores.values.sum())
     }
 }
