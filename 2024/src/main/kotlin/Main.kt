@@ -1,6 +1,10 @@
 import days.DayBase
 import java.io.OutputStream
 import java.io.PrintStream
+import kotlin.reflect.KClass
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.jvm.isAccessible
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.measureTime
@@ -20,6 +24,65 @@ enum class Colors {
     }
 }
 
+/**
+ * Returns a hardcoded "zero value" of the given
+ * type in a type-safe manner.
+ * Supports all primitive types.
+ */
+fun <T : Any> getZeroValue(type: KClass<T>): T? {
+    @Suppress("UNCHECKED_CAST")
+    return when (type) {
+        Int::class -> 0 as T
+        Double::class -> 0.0 as T
+        Float::class -> 0f as T
+        Boolean::class -> false as T
+        String::class -> "" as T
+        List::class -> emptyList<Any>() as T
+        Set::class -> emptySet<Any>() as T
+        Map::class -> emptyMap<Any, Any>() as T
+        else -> {
+            println("Resetting type $type to null, is it safe?")
+            null
+        }
+    }
+}
+
+/**
+ * Resets a class-object's properties (mutable `val` or `var`)
+ * back to their default value.
+ *
+ * For "mutable `val`s" (e.g., `val thing = mutableListOf<Int>()`),
+ * clear it (only supports collections and maps).
+ *
+ * For `var`s (e.g., `var thing: Int = 0`), reset them to their default
+ * value by setting them to the return of [getZeroValue].
+ *
+ * Non-mutable `val` are intentionally left untouched, both because it's
+ * technically not possible to alter them and because we don't want to
+ * reset constants, which are **very likely** identical between different
+ * executions.
+ */
+fun resetObjectProperties(obj: Any) {
+    for (property in obj::class.declaredMemberProperties) {
+        property.isAccessible = true
+        if (property is KMutableProperty<*>) {
+            val zeroValue = getZeroValue(property.returnType.classifier as? KClass<*> ?: continue)
+            property.setter.call(obj, zeroValue)
+            continue
+        }
+        val value = property.call(obj)
+        when (value) {
+            is MutableCollection<*> -> value.clear()
+            is MutableMap<*, *> -> value.clear()
+            else -> error("Unexpected property type ${value?.javaClass}")
+        }
+    }
+}
+
+/**
+ * Pretty-prints the [answer] for [day] [part].
+ * Adds an emoji depending on the value of [matchesExample] (null, true or false).
+ */
 fun printAnswer(day: Int, part: Int, answer: Long, matchesExample: Boolean? = null) {
     val formattedOutput = "%,d".format(answer)
     val output = if (formattedOutput != "$answer") "\t($formattedOutput)" else ""
@@ -31,6 +94,10 @@ fun printAnswer(day: Int, part: Int, answer: Long, matchesExample: Boolean? = nu
     println("${Colors.BLUE}[Day $day]${Colors.CYAN} Part $part:${Colors.RESET} $answer$output$tick")
 }
 
+/**
+ * Pretty-prints the execution time passed as a parameter with an
+ * additional empty line before.
+ */
 fun printExecutionTime(executionTime: Duration) {
     println(
         "\n${Colors.BOLD}Execution time: ${
@@ -59,6 +126,9 @@ fun main() {
     }
     val d1example = d._part1Answer?.also { d._part1Answer = null }
     val d2example = d._part2Answer?.also { d._part2Answer = null }
+
+    // Reset day before real compute
+    resetObjectProperties(d)
 
     // Compute the real input
     val input = if (d.testMode) {
