@@ -13,6 +13,14 @@ object Day7 : DayBase(7) {
         return compute(expected, current + n, rest) || compute(expected, current * n, rest)
     }
 
+    fun computeWithOr(expected: Long, current: Long, list: List<Long>): Boolean {
+        val n = list.firstOrNull() ?: return expected == current
+        val rest = list.drop(1)
+        return computeWithOr(expected, current + n, rest)
+                || computeWithOr(expected, (if (current == 0L) 1 else current) * n, rest)
+                || computeWithOr(expected, "${if (current == 0L) "" else current}$n".toLong(), rest)
+    }
+
     override fun solve(input: List<String>) {
         // Parsing
         for (line in input) {
@@ -23,5 +31,8 @@ object Day7 : DayBase(7) {
 
         // Part 1
         setPart1Answer(ops.filter { compute(it.total, 0, it.numbers) }.sumOf { it.total })
+
+        // Part 2
+        setPart2Answer(ops.filter { computeWithOr(it.total, 0, it.numbers) }.sumOf { it.total })
     }
 }
