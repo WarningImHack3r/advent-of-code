@@ -3,6 +3,7 @@ import java.io.OutputStream
 import java.io.PrintStream
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
+import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.jvm.isAccessible
 import kotlin.time.Duration
@@ -40,8 +41,10 @@ fun <T : Any> getZeroValue(type: KClass<T>): T? {
         List::class -> emptyList<Any>() as T
         Set::class -> emptySet<Any>() as T
         Map::class -> emptyMap<Any, Any>() as T
-        else -> {
-            println("Resetting type $type to null, is it safe?")
+        else -> try {
+            type.createInstance()
+        } catch (e: Exception) {
+            println("Could not instantiate ${type.java.name}: ${e.message}")
             null
         }
     }
@@ -67,7 +70,11 @@ fun resetObjectProperties(obj: Any) {
         property.isAccessible = true
         if (property is KMutableProperty<*>) {
             val zeroValue = getZeroValue(property.returnType.classifier as? KClass<*> ?: continue)
-            property.setter.call(obj, zeroValue)
+            try {
+                property.setter.call(obj, zeroValue)
+            } catch (_: Exception) {
+                println("${Colors.RED}Could not reset field \"${property.name}\", skipping${Colors.RESET}")
+            }
             continue
         }
         val value = property.call(obj)
