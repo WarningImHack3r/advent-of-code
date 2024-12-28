@@ -27,8 +27,8 @@ object Day11 : DayBase(11) {
             }
         }
 
-    fun processStones(m: Map<Long, Int>): Map<Long, Int> {
-        val n = mutableMapOf<Long, Int>()
+    fun processStones(m: Map<Long, Long>): Map<Long, Long> {
+        val n = mutableMapOf<Long, Long>()
         for ((key, value) in m) {
             for (stone in processStone(key)) {
                 n[stone] = n[stone]?.let { it + value } ?: value
@@ -41,7 +41,7 @@ object Day11 : DayBase(11) {
         // Parsing
         val numbers = input.first().split(" ").map(String::toLong)
 
-        var map = numbers.groupingBy { it }.eachCount()
+        var map = numbers.groupingBy { it }.eachCount().mapValues { it.value.toLong() }
 
         // Part 1
         repeat(25) {
@@ -49,5 +49,12 @@ object Day11 : DayBase(11) {
         }
 
         setPart1Answer(map.values.sum())
+
+        // Part 2
+        repeat(50) { // 25 + 50 = 75
+            map = processStones(map)
+        }
+
+        setPart2Answer(map.values.sumOf { it.toLong() })
     }
 }
