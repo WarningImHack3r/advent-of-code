@@ -77,6 +77,7 @@ fun resetObjectProperties(obj: Any) {
             }
             continue
         }
+        if (property.isConst) continue
         val value = property.call(obj)
         when (value) {
             is MutableCollection<*> -> value.clear()
