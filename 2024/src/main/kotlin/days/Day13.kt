@@ -93,10 +93,8 @@ object Day13 : DayBase(13) {
         // Part 2
         setPart2Answer(machines.mapNotNull { machine ->
             solveMachine(
-                Machine(
-                    Position(machine.prize.x + PT2_INCREASE_FACTOR, machine.prize.y + PT2_INCREASE_FACTOR),
-                    machine.a,
-                    machine.b
+                machine.copy(
+                    Position(machine.prize.x + PT2_INCREASE_FACTOR, machine.prize.y + PT2_INCREASE_FACTOR)
                 )
             )
         }.sum())
