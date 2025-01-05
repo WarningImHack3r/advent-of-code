@@ -19,7 +19,7 @@ object Examples {
         12 to Answer(1_930, 1_206),
         13 to Answer(480, 875_318_608_908),
         14 to Answer(12, null), // part 2 is impossible with the example!
-        15 to Answer(10_092, null),
+        15 to Answer(10_092, 9_021),
         16 to Answer(null, null),
         17 to Answer(null, null),
         18 to Answer(null, null),
