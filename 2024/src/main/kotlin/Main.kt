@@ -123,10 +123,12 @@ fun main() {
         println("No implementation found. Implement the DayBase class to begin!")
         return
     }
+    val debug =
+        System.getProperty("intellij.debug.agent") == "true" // it looks IDEA-specific but that's the best I could find
 
     // Compute example
     val example = Examples.get(d.day)
-    if (!d.testMode) {
+    if (!d.testMode && !debug) {
         val out = System.out
         System.setOut(PrintStream(OutputStream.nullOutputStream()))
         example?.input?.let { d.solve(it) }
@@ -136,12 +138,15 @@ fun main() {
     val d2example = d._part2Answer?.also { d._part2Answer = null }
 
     // Reset day before real compute
-    resetObjectProperties(d)
+    if (!debug) { // useless during debugging because the example wasn't run
+        resetObjectProperties(d)
+    }
 
     // Compute the real input
     val input = if (d.testMode) {
         example?.input ?: throw Exception("No example input despite test mode enabled")
     } else d.readInput()
+    println() // space out any console output from the command-line arguments
     val execTime = measureTime { d.solve(input) }
 
     if (d._part1Answer != null || d._part2Answer != null) println()
