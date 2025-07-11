@@ -7,11 +7,11 @@
     "watch": "nodemon"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.13",
-    "@types/node": "^22.10.1",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^22.16.3",
     "lodash": "^4.17.21",
-    "mathjs": "^14.0.0",
-    "nodemon": "^3.1.7",
+    "mathjs": "^14.5.3",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2"
   }
 }
