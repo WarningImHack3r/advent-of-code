@@ -6,6 +6,8 @@ examples/
 .kotlin/
 build/
 *.iml
-.idea/*
+**/.idea/*
+**/target/
+__pycache__
 !.idea/icon.svg
 .env
