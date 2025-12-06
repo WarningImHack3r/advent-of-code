@@ -11,9 +11,9 @@ fn read_file(day: u8) -> String {
 }
 
 fn main() {
-    const DAY: u8 = 1;
+    const DAY: u8 = 2;
     let file = read_file(DAY);
-    let (part1, part2) = days::day1::answers(&file);
+    let (part1, part2) = days::day2::answers(&file);
     println!("Day {DAY} part 1: {part1}");
     println!("Day {DAY} part 2: {part2}");
 }

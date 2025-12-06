@@ -30,3 +30,33 @@ pub fn answers(input: &str) -> (i32, i32) {
 
     (zeroes, wraps)
 }
+
+#[cfg(test)]
+mod tests_day01 {
+    use super::*;
+
+    const EXAMPLE_INPUT: &str = "\
+L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82
+";
+
+    #[test]
+    fn test_part1_example() {
+        let (part1, _) = answers(EXAMPLE_INPUT);
+        assert_eq!(part1, 3);
+    }
+
+    #[test]
+    fn test_part2_example() {
+        let (_, part2) = answers(EXAMPLE_INPUT);
+        assert_eq!(part2, 6);
+    }
+}
