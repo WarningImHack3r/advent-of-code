@@ -7,8 +7,8 @@
     "watch": "nodemon"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.21",
-    "@types/node": "^24.10.4",
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^24.10.6",
     "lodash": "^4.17.21",
     "mathjs": "^15.1.0",
     "nodemon": "^3.1.11",
